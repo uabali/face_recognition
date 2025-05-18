@@ -48,7 +48,7 @@ while cap.isOpened():
 
     for (top, right, bottom, left), face_encoding in zip(face_locations, face_encodings):
         matches = face_recognition.compare_faces(known_face_encodings, face_encoding)
-        name = "Bilinmeyen"
+        name = "unknown"
         face_distances = face_recognition.face_distance(known_face_encodings, face_encoding)
         if len(face_distances) > 0:
             best_match_index = np.argmin(face_distances)
@@ -63,7 +63,7 @@ while cap.isOpened():
         cv2.rectangle(original_frame, (left, top), (right, bottom), (0, 255, 0), 2)
         cv2.putText(original_frame, name, (left, top - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
-    cv2.imshow('Yuz Tanima', original_frame)
+    cv2.imshow('Face Recognition', original_frame)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
